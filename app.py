@@ -37,12 +37,12 @@ month_df = pd.merge(returns,orders, how="outer", on="period").fillna(0)
 #add return rate computed columns
 month_df["return_rate"] = month_df.returns/month_df.orders
 month_df["return_rate_percentage"] = month_df.returns/month_df.orders * 100
-month_df.return_rate_percentage = month_df.return_rate_percentage.round(2)
+month_df["return_rate_percentage"] = month_df.return_rate_percentage.round(2)
 month_df["return_rate_%_delta"] = ((month_df.return_rate_percentage - month_df.return_rate_percentage.shift(1))/month_df.return_rate_percentage.shift(1))
 month_df["return_rate_%_delta"] = month_df["return_rate_%_delta"].round(2)
 
 #output to excel
-month_df.to_excel("data/ADG_takehome_results.xlsx")
+month_df.to_excel("data/results.xlsx")
 
 #month name dict
 months = {'1': 'January', '2': 'February', "3": "March", "4": "April",
